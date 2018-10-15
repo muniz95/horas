@@ -25,7 +25,7 @@ export default class App extends Component {
 					<Home path="/" />
 					<Profile path="/profile/" user="me" />
 					<Profile path="/profile/:user" />
-          <NotFound default />
+					<NotFound default />
 				</Router>
 			</div>
 		);
