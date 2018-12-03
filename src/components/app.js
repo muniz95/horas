@@ -5,6 +5,8 @@ import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 import NotFound from '../routes/404';
+import { Provider } from 'preact-redux';
+import { store } from '../redux/store';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
@@ -19,15 +21,17 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div id="app">
-				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-					<NotFound default />
-				</Router>
-			</div>
+			<Provider store={store}>
+				<div id="app">
+					<Header />
+					<Router onChange={this.handleRoute}>
+						<Home path="/" />
+						<Profile path="/profile/" user="me" />
+						<Profile path="/profile/:user" />
+						<NotFound default />
+					</Router>
+				</div>
+			</Provider>
 		);
 	}
 }
