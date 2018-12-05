@@ -1,10 +1,16 @@
 import { h, Component } from 'preact';
 import Appointment from '../../components/appointment';
+import Button from 'preact-material-components/Button';
 import 'preact-material-components/Button/style.css';
+import { addAppointment } from '../../redux/actions';
 import { connect } from 'preact-redux';
 import style from './style';
 
 class Home extends Component {
+	addAppointment = () => {
+		this.props.dispatchAddAppointment();
+	}
+
 	render() {
 		return (
 			<div class={style.home}>
@@ -12,20 +18,31 @@ class Home extends Component {
 				{
 					this.props.appointments
 						? this.props.appointments.map(app =>
-							<Appointment />
+							<Appointment appointment={app} />
 						)
 						: <h2>Nenhum apontamento encontrado!</h2>
 				}
+				<div class={style.buttonRow}>
+					<Button ripple raised className="mdc-theme--primary-bg" onClick={this.addAppointment}>
+						+
+					</Button>
+				</div>
 			</div>
 		);
 	}
 }
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
 	const { appointments } = state;
 	return {
 		appointments
 	};
-}
+};
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = (dispatch) => ({
+	dispatchAddAppointment: () => {
+		dispatch(addAppointment());
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

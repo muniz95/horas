@@ -11,3 +11,10 @@
 .cardBody {
   padding: 16px;
 }
+
+.buttonRow {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	height: 20%;
+}

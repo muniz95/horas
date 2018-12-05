@@ -9,19 +9,20 @@ export default class Appointment extends Component {
 	}
 
 	save = (evt) => {
-		console.log(this.state);
+		console.log('props', this.props);
 		// this.setState({
-
+			
 		// });
 	}
-
-	render() {
+		
+	render(props) {
+		console.log('props', props);
 		return (
 			<div class={style.container}>
-				<input type="date" id="startDate" onChange={this.setContent} />
-				<input type="time" id="startTime" onChange={this.setContent} />
-				<input type="date" id="endDate" onChange={this.setContent} />
-				<input type="time" id="endTime" onChange={this.setContent} />
+				<input type="date" value={props.appointment.startDate} id="startDate" onChange={this.setContent} />
+				<input type="time" value={props.appointment.startTime} id="startTime" onChange={this.setContent} />
+				<input type="date" value={props.appointment.endDate} id="endDate" onChange={this.setContent} />
+				<input type="time" value={props.appointment.endTime} id="endTime" onChange={this.setContent} />
 				<button onClick={this.save} >Salvar</button>
 			</div>
 		);
