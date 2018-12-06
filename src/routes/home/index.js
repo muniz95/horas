@@ -7,21 +7,17 @@ import { connect } from 'preact-redux';
 import style from './style';
 
 class Home extends Component {
-	addAppointment = () => {
-		this.props.dispatchAddAppointment();
-	}
-
 	render() {
 		return (
-			<div class={style.home}>
+			<div class={`${style.home} page`}>
 				<h1>Home route</h1>
 				{
 					this.props.appointments
-						? this.props.appointments.map(app =>
-							<Appointment appointment={app} />
+					? this.props.appointments.map(app =>
+						<Appointment appointment={app} />
 						)
 						: <h2>Nenhum apontamento encontrado!</h2>
-				}
+					}
 				<div class={style.buttonRow}>
 					<Button ripple raised className="mdc-theme--primary-bg" onClick={this.addAppointment}>
 						+
@@ -29,6 +25,10 @@ class Home extends Component {
 				</div>
 			</div>
 		);
+	}
+
+	addAppointment = () => {
+		this.props.dispatchAddAppointment();
 	}
 }
 
