@@ -33,7 +33,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "if-env": "^1.0.0",
-    "preact-cli": "^2.0.0",
+    "preact-cli": "^3.5.1",
     "surge": "^0.20.1"
   },
   "dependencies": {
