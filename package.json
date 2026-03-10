@@ -12,6 +12,8 @@
     "predeploy": "npm run build"
   },
   "dependencies": {
+    "@mantine/core": "^8.3.16",
+    "@mantine/hooks": "^8.3.16",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-redux": "9.2.0",

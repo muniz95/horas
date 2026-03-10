@@ -1,9 +1,9 @@
+import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import Appointment from '../../components/appointment';
 import { addAppointment } from '../../redux/actions';
-import type { AppDispatch } from '../../redux/store';
 import type { RootState } from '../../redux/reducers';
-import style from './style.module.css';
+import type { AppDispatch } from '../../redux/store';
 
 export default function Home() {
   const appointments = useSelector((state: RootState) => state.appointments);
@@ -14,8 +14,17 @@ export default function Home() {
   };
 
   return (
-    <div className={`${style.home} page`}>
-      <h1>Home route</h1>
+    <Stack gap="md">
+      <Group justify="space-between" align="flex-end">
+        <div>
+          <Title order={2}>Appointments</Title>
+          <Text c="dimmed" size="sm">
+            Manage your scheduling entries in one place.
+          </Text>
+        </div>
+        <Button onClick={onAddAppointment}>New appointment</Button>
+      </Group>
+
       {appointments.length > 0 ? (
         appointments.map((appointment, index) => (
           <Appointment
@@ -24,13 +33,10 @@ export default function Home() {
           />
         ))
       ) : (
-        <h2>Nenhum apontamento encontrado!</h2>
+        <Card withBorder p="lg">
+          <Text c="dimmed">Nenhum apontamento encontrado.</Text>
+        </Card>
       )}
-      <div className={style.buttonRow}>
-        <button type="button" onClick={onAddAppointment}>
-          +
-        </button>
-      </div>
-    </div>
+    </Stack>
   );
 }

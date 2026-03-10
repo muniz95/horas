@@ -1,6 +1,6 @@
 # horas
 
-React + TypeScript single-page app powered by Vite.
+React + TypeScript single-page app powered by Vite, Mantine, and a web app manifest for PWA installs.
 
 ## Commands
 

@@ -1,6 +1,6 @@
+import { Badge, Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import style from './style.module.css';
 
 export default function Profile() {
   const { user } = useParams();
@@ -20,18 +20,26 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className={`${style.profile} page`}>
-      <h1>Profile: {profileUser}</h1>
-      <p>This is the user profile for a user named {profileUser}.</p>
+    <Stack gap="md">
+      <Group justify="space-between" align="center">
+        <div>
+          <Title order={2}>Profile: {profileUser}</Title>
+          <Text c="dimmed">This is the user profile for a user named {profileUser}.</Text>
+        </div>
+        <Badge variant="light">Live clock</Badge>
+      </Group>
 
-      <div>Current time: {new Date(time).toLocaleString()}</div>
-
-      <p>
-        <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          Click Me
-        </button>{' '}
-        Clicked {count} times.
-      </p>
-    </div>
+      <Card withBorder p="lg">
+        <Stack gap="md">
+          <Text>Current time: {new Date(time).toLocaleString()}</Text>
+          <Group>
+            <Button variant="default" onClick={() => setCount((prev) => prev + 1)}>
+              Click me
+            </Button>
+            <Text>Clicked {count} times.</Text>
+          </Group>
+        </Stack>
+      </Card>
+    </Stack>
   );
 }
