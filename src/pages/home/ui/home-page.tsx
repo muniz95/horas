@@ -1,11 +1,11 @@
 import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import Appointment from '../../components/appointment';
-import { addAppointment } from '../../redux/actions';
-import type { RootState } from '../../redux/reducers';
-import type { AppDispatch } from '../../redux/store';
+import AppointmentCard from '@/entities/appointment/ui/appointment-card';
+import { addAppointment } from '@/redux/actions';
+import type { RootState } from '@/redux/reducers';
+import type { AppDispatch } from '@/redux/store';
 
-export default function Home() {
+export default function HomePage() {
   const appointments = useSelector((state: RootState) => state.appointments);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,7 +27,7 @@ export default function Home() {
 
       {appointments.length > 0 ? (
         appointments.map((appointment, index) => (
-          <Appointment
+          <AppointmentCard
             key={`${appointment.startDate}-${appointment.startTime}-${index}`}
             appointment={appointment}
           />

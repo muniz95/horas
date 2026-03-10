@@ -1,7 +1,7 @@
 import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
-export default function NotFound() {
+export default function NotFoundPage() {
   const navigate = useNavigate();
 
   return (

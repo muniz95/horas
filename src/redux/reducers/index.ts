@@ -1,6 +1,6 @@
 import { combineReducers, type AnyAction } from 'redux';
-import { ADD_APPOINTMENT } from '../constants';
-import type { Appointment } from '../types';
+import { ADD_APPOINTMENT } from '@/redux/constants';
+import type { Appointment } from '@/redux/types';
 
 const appointments = (state: Appointment[] = [], action: AnyAction): Appointment[] => {
   switch (action.type) {

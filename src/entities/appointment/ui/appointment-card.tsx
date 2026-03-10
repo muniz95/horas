@@ -1,12 +1,12 @@
 import { Button, Card, Group, TextInput } from '@mantine/core';
 import { useEffect, useState, type ChangeEvent } from 'react';
-import type { Appointment as AppointmentType } from '../../redux/types';
+import type { Appointment as AppointmentType } from '@/redux/types';
 
 interface AppointmentProps {
   appointment: AppointmentType;
 }
 
-export default function Appointment({ appointment }: AppointmentProps) {
+export default function AppointmentCard({ appointment }: AppointmentProps) {
   const [formData, setFormData] = useState<AppointmentType>(appointment);
 
   useEffect(() => {

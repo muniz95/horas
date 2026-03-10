@@ -1,22 +1,7 @@
 import { useMantineColorScheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-export interface NavigationItem {
-  label: string;
-  path: string;
-}
-
-const navigationItems: NavigationItem[] = [
-  {
-    label: 'Home',
-    path: '/'
-  },
-  {
-    label: 'Profile',
-    path: '/profile'
-  }
-];
+import { navigationItems } from '@/widgets/app-shell/config/navigation-items';
 
 export const useApp = () => {
   const navigate = useNavigate();

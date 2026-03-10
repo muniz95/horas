@@ -2,7 +2,7 @@ import { Badge, Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function Profile() {
+export default function ProfilePage() {
   const { user } = useParams();
   const profileUser = user ?? 'me';
 
