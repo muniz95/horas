@@ -6,45 +6,26 @@ import {
   ScrollArea,
   Switch,
   Text,
-  Title,
-  useMantineColorScheme
+  Title
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useApp } from './hooks/use-app';
 import NotFound from '../routes/404';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 import { store } from '../redux/store';
 
-interface NavigationItem {
-  label: string;
-  path: string;
-}
-
-const navigationItems: NavigationItem[] = [
-  {
-    label: 'Home',
-    path: '/'
-  },
-  {
-    label: 'Profile',
-    path: '/profile'
-  }
-];
-
 function AppLayout() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [opened, { toggle, close }] = useDisclosure(false);
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
-
-  const darkModeEnabled = colorScheme === 'dark';
-
-  const handleNavigation = (path: string) => {
-    navigate(path);
-    close();
-  };
+  const {
+    darkModeEnabled,
+    handleNavigation,
+    isNavigationItemActive,
+    navigationItems,
+    opened,
+    setDarkMode,
+    toggle
+  } = useApp();
 
   return (
     <AppShell
@@ -66,7 +47,7 @@ function AppLayout() {
             size="sm"
             label="Dark mode"
             checked={darkModeEnabled}
-            onChange={(event) => setColorScheme(event.currentTarget.checked ? 'dark' : 'light')}
+            onChange={(event) => setDarkMode(event.currentTarget.checked)}
           />
         </Group>
       </AppShell.Header>
@@ -79,15 +60,10 @@ function AppLayout() {
         </AppShell.Section>
         <AppShell.Section component={ScrollArea} grow>
           {navigationItems.map((item) => {
-            const isActive =
-              item.path === '/'
-                ? location.pathname === '/'
-                : location.pathname.startsWith(item.path);
-
             return (
               <NavLink
                 key={item.path}
-                active={isActive}
+                active={isNavigationItemActive(item.path)}
                 label={item.label}
                 onClick={() => handleNavigation(item.path)}
               />
