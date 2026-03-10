@@ -1,1 +1,0 @@
-export const ADD_APPOINTMENT = 'ADD_APPOINTMENT';

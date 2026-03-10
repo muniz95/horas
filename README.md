@@ -1,21 +1,19 @@
-# preact material app
+# horas
 
-Super performant `Material` app for preact world using [preact-material-components](https://github.com/prateekbh/preact-material-components)
+React + TypeScript single-page app powered by Vite.
 
-## CLI Commands
+## Commands
 
-``` bash
+```bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# run local dev server
 npm run dev
 
-# build for production with minification
+# build for production
 npm run build
 
-# test the production build locally
-npm run serve
+# preview production build
+npm run preview
 ```
-
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).

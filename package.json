@@ -3,45 +3,27 @@
   "name": "horas",
   "version": "0.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
-    "lint": "eslint src",
-    "predeploy": "npm run build",
-    "deploy": "surge ./build -d https://horas.surge.sh"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor",
-    "rules": {
-      "no-unused-vars": "warn",
-      "react/sort-comp": "off",
-      "lines-around-comment": "off",
-      "react/prefer-stateless-function": "off"
-    }
-  },
-  "eslintIgnore": [
-    "build/*"
-  ],
-  "devDependencies": {
-    "eslint": "^6.2.1",
-    "eslint-config-standard": "^14.0.0",
-    "eslint-config-synacor": "^1.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "if-env": "^1.0.0",
-    "preact-cli": "^2.0.0",
-    "surge": "^0.20.1"
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build"
   },
   "dependencies": {
-    "preact": "^8.2.1",
-    "preact-compat": "^3.17.0",
-    "preact-material-components": "^1.4.3",
-    "preact-redux": "^2.0.3",
-    "preact-router": "^2.5.5",
-    "redux": "^4.0.1"
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-redux": "9.2.0",
+    "react-router-dom": "7.13.1",
+    "redux": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "25.4.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
   }
 }

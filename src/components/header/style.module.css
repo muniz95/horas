@@ -1,0 +1,80 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  height: 56px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f172a;
+  color: #fff;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.iconButton {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.drawer {
+  width: 260px;
+  height: 100%;
+  padding: 16px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawerItem {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  text-align: left;
+  background: #fff;
+  cursor: pointer;
+}
+
+.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.dialog {
+  width: min(420px, calc(100% - 24px));
+  margin: 80px auto;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.dialogActions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
