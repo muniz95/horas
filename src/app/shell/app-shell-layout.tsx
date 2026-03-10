@@ -1,8 +1,8 @@
 import { AppShell } from '@mantine/core';
 import { type ReactNode } from 'react';
 import { useApp } from '@/app/hooks/use-app';
-import { AppShellHeader } from '@/widgets/app-shell/ui/app-shell-header';
-import { AppShellNavbar } from '@/widgets/app-shell/ui/app-shell-navbar';
+import { AppShellHeader } from '@/app/shell/app-shell-header';
+import { AppShellNavbar } from '@/app/shell/app-shell-navbar';
 
 interface AppShellLayoutProps {
   children: ReactNode;

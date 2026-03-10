@@ -1,6 +1,6 @@
 import { legacy_createStore as createStore } from 'redux';
-import reducer from '@/redux/reducers';
+import { rootReducer } from '@/app/store/root-reducer';
 
-export const store = createStore(reducer);
+export const store = createStore(rootReducer);
 
 export type AppDispatch = typeof store.dispatch;

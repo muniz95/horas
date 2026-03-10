@@ -1,26 +1,11 @@
-import type { ReactElement } from 'react';
-import HomePage from '@/pages/home/ui/home-page';
-import NotFoundPage from '@/pages/not-found/ui/not-found-page';
-import ProfilePage from '@/pages/profile/ui/profile-page';
+import type { AppRoute } from '@/app/router/types';
+import { featureModules } from '@/features/registry';
+import NotFoundPage from '@/shared/ui/not-found-page';
 
-export interface AppRoute {
-  element: ReactElement;
-  path: string;
-}
+const featureRoutes = featureModules.flatMap((feature) => feature.routes);
 
 export const appRoutes: AppRoute[] = [
-  {
-    path: '/',
-    element: <HomePage />
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />
-  },
-  {
-    path: '/profile/:user',
-    element: <ProfilePage />
-  },
+  ...featureRoutes,
   {
     path: '*',
     element: <NotFoundPage />

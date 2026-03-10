@@ -1,5 +1,5 @@
-import { ADD_APPOINTMENT } from '@/redux/constants';
-import type { Appointment } from '@/redux/types';
+import { ADD_APPOINTMENT } from '@/features/appointments/model/constants';
+import type { Appointment } from '@/features/appointments/model/types';
 
 export interface AddAppointmentAction {
   type: typeof ADD_APPOINTMENT;

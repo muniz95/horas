@@ -1,5 +1,5 @@
 import { AppShell, NavLink, ScrollArea, Text } from '@mantine/core';
-import type { NavigationItem } from '@/widgets/app-shell/config/navigation-items';
+import type { NavigationItem } from '@/shared/types/navigation';
 
 interface AppShellNavbarProps {
   isNavigationItemActive: (path: string) => boolean;

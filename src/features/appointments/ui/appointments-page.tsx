@@ -1,11 +1,11 @@
 import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import AppointmentCard from '@/entities/appointment/ui/appointment-card';
-import { addAppointment } from '@/redux/actions';
-import type { RootState } from '@/redux/reducers';
-import type { AppDispatch } from '@/redux/store';
+import { addAppointment } from '@/features/appointments/model/actions';
+import AppointmentCard from '@/features/appointments/ui/appointment-card';
+import type { RootState } from '@/app/store/root-reducer';
+import type { AppDispatch } from '@/app/store/store';
 
-export default function HomePage() {
+export default function AppointmentsPage() {
   const appointments = useSelector((state: RootState) => state.appointments);
   const dispatch = useDispatch<AppDispatch>();
 
