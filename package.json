@@ -8,6 +8,7 @@
     "dev": "vite",
     "start": "vite",
     "build": "tsc -b && vite build",
+    "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build"
   },
@@ -25,6 +26,14 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "knip": "^5.86.0",
+    "prettier": "^3.8.1",
     "typescript": "5.9.3",
     "vite": "7.3.1"
   }
