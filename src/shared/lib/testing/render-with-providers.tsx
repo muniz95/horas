@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { appointmentsStore } from '@/features/appointments/model/store';
 import { profileStore } from '@/features/profile/model/store';
+import { clearLocalStorage } from '@/shared/hooks/use-local-storage';
 
 interface AppRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   route?: string;
@@ -18,6 +19,7 @@ export const renderWithProviders = (
   ui: ReactElement,
   { route = '/', ...renderOptions }: AppRenderOptions = {}
 ) => {
+  clearLocalStorage();
   appointmentsStore.setState({ appointments: [] });
   profileStore.getState().reset();
 

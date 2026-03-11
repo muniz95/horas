@@ -31,55 +31,83 @@ const handleStoredValue = <T>(value: T) => {
   }
 };
 
+const parseStoredValue = (item: string): unknown => {
+  try {
+    return JSON.parse(item);
+  } catch {
+    if (item.toLowerCase() === 'true') {
+      return true;
+    } else if (item.toLowerCase() === 'false') {
+      return false;
+    }
+
+    if (item === '') {
+      return item;
+    }
+
+    const number = Number(item);
+    if (!isNaN(number)) {
+      return number;
+    }
+
+    return item;
+  }
+};
+
+export const readLocalStorage = <T>(key: string, fallbackValue: T): T => {
+  const storage = resolveStorage();
+
+  try {
+    const item = storage.getItem(key);
+    if (item !== null) {
+      return parseStoredValue(item) as T;
+    }
+
+    storage.setItem(key, handleStoredValue(fallbackValue));
+    return fallbackValue;
+  } catch (error) {
+    console.error(error);
+    return fallbackValue;
+  }
+};
+
+export const writeLocalStorage = <T>(key: string, value: T): void => {
+  const storage = resolveStorage();
+
+  try {
+    storage.setItem(key, handleStoredValue(value));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const clearLocalStorage = (): void => {
+  const storage = globalThis?.localStorage as Partial<Storage> | undefined;
+
+  try {
+    if (typeof storage?.clear === 'function') {
+      storage.clear();
+      return;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  Object.keys(memoryStorage).forEach((key) => {
+    delete memoryStorage[key];
+  });
+};
+
 const useLocalStorage = <T>(
   key: string,
   value: T
 ): [T, Dispatch<SetStateAction<T>>] => {
-  const storage = resolveStorage();
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = storage.getItem(key);
-      if (item !== null) {
-        try {
-          return JSON.parse(item);
-        } catch {
-          if (item.toLowerCase() === 'true') {
-            return true;
-          } else if (item.toLowerCase() === 'false') {
-            return false;
-          }
-
-          if (item === '') {
-            return item;
-          }
-
-          const number = Number(item);
-          if (!isNaN(number)) {
-            return number;
-          }
-
-          return item;
-        }
-      } else {
-        storage.setItem(key, handleStoredValue(value));
-        return value;
-      }
-    } catch (error) {
-      console.error(error);
-      return value;
-    }
-
-    return value;
-  });
+  const [storedValue, setStoredValue] = useState<T>(() => readLocalStorage(key, value));
 
   useEffect(() => {
-    try {
-      if (storedValue === undefined) return;
-      storage.setItem(key, handleStoredValue(storedValue));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [key, storage, storedValue]);
+    if (storedValue === undefined) return;
+    writeLocalStorage(key, storedValue);
+  }, [key, storedValue]);
 
   return [storedValue, setStoredValue];
 };

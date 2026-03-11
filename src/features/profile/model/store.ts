@@ -8,6 +8,8 @@ export interface ProfileStoreState {
   time: number;
 }
 
+export const PROFILE_STORAGE_KEY = 'feature:profile-store';
+
 const profileFeatureStore = createFeatureStore<ProfileStoreState>((set) => ({
   time: Date.now(),
   count: 10,
@@ -18,7 +20,12 @@ const profileFeatureStore = createFeatureStore<ProfileStoreState>((set) => ({
       time: Date.now(),
       count: 10
     })
-}));
+}), {
+  persistKey: PROFILE_STORAGE_KEY,
+  partialize: (state) => ({
+    count: state.count
+  })
+});
 
 export const createProfileStore = profileFeatureStore.createStore;
 

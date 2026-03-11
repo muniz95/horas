@@ -7,6 +7,8 @@ export interface AppointmentsStoreState {
   clearAppointments: () => void;
 }
 
+export const APPOINTMENTS_STORAGE_KEY = 'feature:appointments-store';
+
 const createDefaultAppointment = (): Appointment => ({
   startDate: '2018-05-09',
   startTime: '12:00',
@@ -21,7 +23,12 @@ const appointmentsFeatureStore = createFeatureStore<AppointmentsStoreState>((set
       appointments: [...state.appointments, createDefaultAppointment()]
     })),
   clearAppointments: () => set({ appointments: [] })
-}));
+}), {
+  persistKey: APPOINTMENTS_STORAGE_KEY,
+  partialize: (state) => ({
+    appointments: state.appointments
+  })
+});
 
 export const createAppointmentsStore = appointmentsFeatureStore.createStore;
 
