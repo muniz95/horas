@@ -1,17 +1,44 @@
-import { describe, expect, it } from 'vitest';
-import { addAppointment } from '@/features/appointments/model/actions';
-import { ADD_APPOINTMENT } from '@/features/appointments/model/constants';
+import { beforeEach, describe, expect, it } from 'vitest';
+import {
+  APPOINTMENTS_STORAGE_KEY,
+  createAppointmentsStore
+} from '@/features/appointments/model/store';
+import { clearLocalStorage, readLocalStorage } from '@/shared/hooks/use-local-storage';
 
-describe('appointments actions', () => {
-  it('creates an add appointment action with expected payload', () => {
-    expect(addAppointment()).toEqual({
-      type: ADD_APPOINTMENT,
-      payload: {
+describe('appointments store actions', () => {
+  beforeEach(() => {
+    clearLocalStorage();
+  });
+
+  it('adds a default appointment to state', () => {
+    const store = createAppointmentsStore();
+
+    store.getState().addAppointment();
+
+    expect(store.getState().appointments).toEqual([
+      {
         startDate: '2018-05-09',
         startTime: '12:00',
         endDate: '2018-05-09',
         endTime: '12:00'
       }
+    ]);
+  });
+
+  it('persists state into localStorage', () => {
+    const store = createAppointmentsStore();
+
+    store.getState().addAppointment();
+
+    expect(readLocalStorage(APPOINTMENTS_STORAGE_KEY, { appointments: [] })).toEqual({
+      appointments: [
+        {
+          startDate: '2018-05-09',
+          startTime: '12:00',
+          endDate: '2018-05-09',
+          endTime: '12:00'
+        }
+      ]
     });
   });
 });

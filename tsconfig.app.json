@@ -18,7 +18,7 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"],
@@ -32,5 +32,5 @@
     "src/**/*.spec.tsx",
     "src/**/*.integration.test.ts",
     "src/**/*.integration.test.tsx"
-  ],
+  ]
 }
