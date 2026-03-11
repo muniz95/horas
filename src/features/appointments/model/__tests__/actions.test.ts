@@ -1,17 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import { addAppointment } from '@/features/appointments/model/actions';
-import { ADD_APPOINTMENT } from '@/features/appointments/model/constants';
+import { createAppointmentsStore } from '@/features/appointments/model/store';
 
-describe('appointments actions', () => {
-  it('creates an add appointment action with expected payload', () => {
-    expect(addAppointment()).toEqual({
-      type: ADD_APPOINTMENT,
-      payload: {
+describe('appointments store actions', () => {
+  it('adds a default appointment to state', () => {
+    const store = createAppointmentsStore();
+
+    store.getState().addAppointment();
+
+    expect(store.getState().appointments).toEqual([
+      {
         startDate: '2018-05-09',
         startTime: '12:00',
         endDate: '2018-05-09',
         endTime: '12:00'
       }
-    });
+    ]);
   });
 });

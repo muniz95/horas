@@ -1,23 +1,29 @@
 import { Badge, Button, Card, Group, Stack, Text, Title } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useProfileStore } from '@/features/profile/model/store';
 
 export default function ProfilePage() {
   const { user } = useParams();
   const profileUser = user ?? 'me';
 
-  const [time, setTime] = useState(Date.now());
-  const [count, setCount] = useState(10);
+  const time = useProfileStore((state) => state.time);
+  const count = useProfileStore((state) => state.count);
+  const tick = useProfileStore((state) => state.tick);
+  const reset = useProfileStore((state) => state.reset);
+  const increment = useProfileStore((state) => state.increment);
 
   useEffect(() => {
+    reset();
+
     const timer = window.setInterval(() => {
-      setTime(Date.now());
+      tick();
     }, 1000);
 
     return () => {
       window.clearInterval(timer);
     };
-  }, []);
+  }, [reset, tick]);
 
   return (
     <Stack gap="md">
@@ -33,7 +39,7 @@ export default function ProfilePage() {
         <Stack gap="md">
           <Text>Current time: {new Date(time).toLocaleString()}</Text>
           <Group>
-            <Button variant="default" onClick={() => setCount((prev) => prev + 1)}>
+            <Button variant="default" onClick={increment}>
               Click me
             </Button>
             <Text>Clicked {count} times.</Text>
