@@ -1,5 +1,5 @@
 import { createAppointmentsPageStore } from '@/features/appointments/application/state/create-appointments-page-store';
-import type { AppointmentsRepository } from '@/features/appointments/domain/appointments-repository';
+import type { AppointmentsRepository } from '@/features/appointments/domain/interfaces/appointments-repository';
 import { createStoreContext } from '@/shared/lib/state/create-store-context';
 
 export const {

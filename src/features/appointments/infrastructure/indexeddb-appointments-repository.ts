@@ -1,24 +1,24 @@
 import type {
   Appointment,
   AppointmentId
-} from '@/features/appointments/domain/appointment';
-import type { AppointmentsRepository } from '@/features/appointments/domain/appointments-repository';
+} from '@/features/appointments/domain/entities/appointment';
+import type { AppointmentsRepository } from '@/features/appointments/domain/interfaces/appointments-repository';
 import {
   openIndexedDb,
   requestToPromise,
   transactionToPromise
 } from '@/shared/lib/storage/indexed-db';
 
-export const APPOINTMENTS_DB_NAME = 'horas';
-export const APPOINTMENTS_DB_VERSION = 1;
-export const APPOINTMENTS_STORE_NAME = 'appointments';
+const APPOINTMENTS_DB_NAME = 'horas';
+const APPOINTMENTS_DB_VERSION = 1;
+const APPOINTMENTS_STORE_NAME = 'appointments';
 
 interface IndexedDbAppointmentsRepositoryOptions {
   dbName?: string;
   indexedDB?: IDBFactory;
 }
 
-export class IndexedDbAppointmentsRepository implements AppointmentsRepository {
+class IndexedDbAppointmentsRepository implements AppointmentsRepository {
   private databasePromise: Promise<IDBDatabase> | null = null;
 
   constructor(private readonly options: IndexedDbAppointmentsRepositoryOptions = {}) {}

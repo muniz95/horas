@@ -4,7 +4,7 @@ import {
   useAppointmentsPageStoreApi
 } from '@/features/appointments/application/state/appointments-page-store-context';
 import { createIndexedDbAppointmentsRepository } from '@/features/appointments/infrastructure/indexeddb-appointments-repository';
-import type { AppointmentsRepository } from '@/features/appointments/domain/appointments-repository';
+import type { AppointmentsRepository } from '@/features/appointments/domain/interfaces/appointments-repository';
 
 interface AppointmentsFeatureBootstrapProps {
   children: ReactNode;

@@ -8,8 +8,8 @@ import {
   type AppointmentDraft,
   type AppointmentField,
   type AppointmentValidationErrors
-} from '@/features/appointments/domain/appointment';
-import type { AppointmentsRepository } from '@/features/appointments/domain/appointments-repository';
+} from '@/features/appointments/domain/entities/appointment';
+import type { AppointmentsRepository } from '@/features/appointments/domain/interfaces/appointments-repository';
 
 export type AppointmentsPageStatus = 'error' | 'idle' | 'loading' | 'ready';
 

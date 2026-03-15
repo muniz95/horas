@@ -3,7 +3,7 @@ import type {
   AppointmentDraft,
   AppointmentField,
   AppointmentValidationErrors
-} from '@/features/appointments/domain/appointment';
+} from '@/features/appointments/domain/entities/appointment';
 
 interface AppointmentCardProps {
   appointment: AppointmentDraft;
