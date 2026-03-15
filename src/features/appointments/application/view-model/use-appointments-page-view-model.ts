@@ -4,7 +4,7 @@ import {
   toAppointmentsPageViewModelItem
 } from '@/features/appointments/application/state/create-appointments-page-store';
 import { useAppointmentsPageStore } from '@/features/appointments/application/state/appointments-page-store-context';
-import type { AppointmentField } from '@/features/appointments/domain/appointment';
+import type { AppointmentField } from '@/features/appointments/domain/entities/appointment';
 
 export interface AppointmentsPageViewModel {
   addAppointment: () => void;

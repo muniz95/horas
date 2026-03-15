@@ -1,6 +1,6 @@
 import type { FeatureModule } from '@/shared/types/feature';
 import { AppointmentsFeatureBootstrap } from '@/features/appointments/application/bootstrap/appointments-feature-bootstrap';
-import AppointmentsPage from '@/features/appointments/ui/appointments-page';
+import AppointmentsPage from '@/features/appointments/ui//pages/appointments-page';
 
 export const appointmentsFeature: FeatureModule = {
   key: 'appointments',
