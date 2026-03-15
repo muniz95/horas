@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom/vitest';
-import { vi } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import { afterEach, beforeEach, vi } from 'vitest';
+import {
+  createFakeIndexedDb,
+  resetFakeIndexedDb
+} from '@/shared/lib/testing/fake-indexeddb';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -33,3 +38,12 @@ class IntersectionObserverMock {
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 vi.stubGlobal('scrollTo', vi.fn());
+vi.stubGlobal('indexedDB', createFakeIndexedDb());
+
+beforeEach(() => {
+  resetFakeIndexedDb();
+});
+
+afterEach(() => {
+  cleanup();
+});

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { featureModules } from '@/app/router/registry';
 import { appRoutes } from '@/app/router/route-config';
-import { featureModules } from '@/features/registry';
 
 describe('route config', () => {
   it('includes all feature routes and wildcard fallback', () => {
