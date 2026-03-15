@@ -49,32 +49,36 @@ src/
 │   │   └── app-shell-navbar.tsx
 │   └── index.tsx
 ├── features/
-│   ├── appointments/
+│   ├── {feature}/
 │   │   ├── application/
 │   │   │   ├── __tests__/
 │   │   │   ├── bootstrap/
-│   │   │   │   └── appointments-feature-bootstrap.tsx
+│   │   │   │   └── {feature}-feature-bootstrap.tsx
 │   │   │   ├── state/
 │   │   │   │   ├── __tests__/
-│   │   │   │   │   └── create-appointments-page-store.test.ts
-│   │   │   │   ├── appointments-page-store-context.ts
-│   │   │   │   └── create-appointments-page-store.ts
+│   │   │   │   │   └── create-{feature}-page-store.test.ts
+│   │   │   │   ├── {feature}-page-store-context.ts
+│   │   │   │   └── create-{feature}-page-store.ts
 │   │   │   └── view-model/
-│   │   │       └── use-appointments-page-view-model.ts
+│   │   │       └── use-{feature}-page-view-model.ts
 │   │   ├── domain/
-│   │   │   ├── __tests__/
-│   │   │   │   └── appointment.test.ts
-│   │   │   ├── appointment.ts
-│   │   │   └── appointments-repository.ts
+│   │   │   ├── entities/
+│   │   │   │   ├── __tests__/
+│   │   │   │   │   └── entity.test.ts
+│   │   │   │   └── entity.ts
+│   │   │   └── interfaces/
+│   │   │       └── {feature}-repository.ts
 │   │   ├── infrastructure/
 │   │   │   ├── __tests__/
-│   │   │   │   └── indexeddb-appointments-repository.test.ts
-│   │   │   └── indexeddb-appointments-repository.ts
+│   │   │   │   └── indexeddb-{feature}-repository.test.ts
+│   │   │   └── indexeddb-{feature}-repository.ts
 │   │   ├── ui/
 │   │   │   ├── __tests__/
-│   │   │   │   └── appointments-page.integration.test.tsx
-│   │   │   ├── appointment-card.tsx
-│   │   │   └── appointments-page.tsx
+│   │   │   │   └── {feature}-page.integration.test.tsx
+│   │   │   ├── components/
+│   │   │   │   └── component.tsx
+│   │   │   └── pages/
+│   │   │       └── {feature}-page.tsx
 │   │   └── feature.tsx
 ├── shared/
 │   ├── hooks/
@@ -83,7 +87,6 @@ src/
 │   │   └── use-local-storage.ts
 │   ├── lib/
 │   │   ├── state/
-│   │   │   ├── create-feature-store.ts
 │   │   │   └── create-store-context.tsx
 │   │   ├── storage/
 │   │   │   └── indexed-db.ts
@@ -111,19 +114,22 @@ src/
 | `src/app/router/__tests__/` | Integration and unit tests for route composition and navigation behavior. |
 | `src/app/shell/` | Shared layout components such as header, navbar, and shell containers. |
 | `src/features/` | Feature modules registered into the app. |
-| `src/features/appointments/` | Appointments feature organized by layered responsibilities. |
-| `src/features/appointments/application/` | Application-layer code that coordinates appointments behavior between UI, domain rules, and persistence. |
-| `src/features/appointments/application/__tests__/` | Reserved area for application-level appointments tests that span more than one application subfolder. |
-| `src/features/appointments/application/bootstrap/` | Feature bootstrap and composition entrypoints, such as provider setup and initial loading behavior. |
-| `src/features/appointments/application/state/` | Provider-scoped application state, commands, and store wiring for the appointments page. |
-| `src/features/appointments/application/state/__tests__/` | Tests for appointments application-state behavior and store commands. |
-| `src/features/appointments/application/view-model/` | Hooks that adapt appointments application state into UI-friendly view models. |
-| `src/features/appointments/domain/` | Appointments business concepts, validation rules, and repository contracts. |
-| `src/features/appointments/domain/__tests__/` | Tests for appointments domain rules and validation behavior. |
-| `src/features/appointments/infrastructure/` | Concrete implementations of appointments domain ports, such as IndexedDB persistence. |
-| `src/features/appointments/infrastructure/__tests__/` | Tests for appointments infrastructure adapters and persistence behavior. |
-| `src/features/appointments/ui/` | Presentational and page components for the appointments feature. |
-| `src/features/appointments/ui/__tests__/` | UI integration tests for the appointments screens and interactions. |
+| `src/features/{feature}/application/` | Application-layer code that coordinates feature-related behavior between UI, domain rules, and persistence. |
+| `src/features/{feature}/application/__tests__/` | Reserved area for application-level tests that span more than one application subfolder. |
+| `src/features/{feature}/application/bootstrap/` | Feature bootstrap and composition entrypoints, such as provider setup and initial loading behavior. |
+| `src/features/{feature}/application/state/` | Provider-scoped application state, commands, and store wiring for the feature-level page. |
+| `src/features/{feature}/application/state/__tests__/` | Tests for feature-level application-state behavior and store commands. |
+| `src/features/{feature}/application/view-model/` | Hooks that adapt feature application state into UI-friendly view models. |
+| `src/features/{feature}/domain/` | Feature business concepts, validation rules, and repository contracts. |
+| `src/features/{feature}/domain/entities/` | Models and contracts for objects used inside the feature scope. |
+| `src/features/{feature}/domain/entities/__tests__/` | Tests for model behavior, validation rules, data conversion, etc. |
+| `src/features/{feature}/domain/interfaces/` | Data contracts specifically meant to be implemented by other components, like repositories. |
+| `src/features/{feature}/infrastructure/` | Concrete implementations of domain ports, such as IndexedDB persistence. |
+| `src/features/{feature}/infrastructure/__tests__/` | Tests for infrastructure adapters and persistence behavior. |
+| `src/features/{feature}/ui/` | Presentational and page components for the feature. |
+| `src/features/{feature}/ui/__tests__/` | UI integration tests for the screens and interactions. |
+| `src/features/{feature}/ui/components/` | Reusable components for feature-scope instance. |
+| `src/features/{feature}/ui/pages/` | Implementation of screens, meant to be mapped as elements for route endpoints. |
 | `src/shared/` | Reusable cross-feature code that is not owned by a single feature. |
 | `src/shared/hooks/` | Generic hooks and storage helpers shared across features. |
 | `src/shared/hooks/__tests__/` | Tests for shared hooks and browser helper behavior. |

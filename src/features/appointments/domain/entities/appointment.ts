@@ -45,7 +45,7 @@ const formatDate = (value: Date) =>
 const formatTime = (value: Date) =>
   `${padDateSegment(value.getHours())}:${padDateSegment(value.getMinutes())}`;
 
-export const createAppointmentId = () => {
+const createAppointmentId = () => {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
     return crypto.randomUUID();
   }
@@ -113,7 +113,7 @@ export const validateAppointmentDraft = (
   return errors;
 };
 
-export const hasAppointmentValidationErrors = (
+const hasAppointmentValidationErrors = (
   errors: AppointmentValidationErrors
 ) => Object.keys(errors).length > 0;
 

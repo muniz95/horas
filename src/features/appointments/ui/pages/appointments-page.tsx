@@ -1,5 +1,5 @@
 import { Alert, Button, Card, Group, Loader, Stack, Text, Title } from '@mantine/core';
-import AppointmentCard from '@/features/appointments/ui/appointment-card';
+import AppointmentCard from '@/features/appointments/ui/components/appointment-card';
 import { useAppointmentsPageViewModel } from '@/features/appointments/application/view-model/use-appointments-page-view-model';
 
 export default function AppointmentsPage() {
