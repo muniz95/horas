@@ -1,4 +1,5 @@
-import type { FeatureModule } from '@/features/types';
+import type { FeatureModule } from '@/shared/types/feature';
+import { AppointmentsFeatureBootstrap } from '@/features/appointments/application/bootstrap/appointments-feature-bootstrap';
 import AppointmentsPage from '@/features/appointments/ui/appointments-page';
 
 export const appointmentsFeature: FeatureModule = {
@@ -6,7 +7,11 @@ export const appointmentsFeature: FeatureModule = {
   routes: [
     {
       path: '/',
-      element: <AppointmentsPage />
+      element: (
+        <AppointmentsFeatureBootstrap>
+          <AppointmentsPage />
+        </AppointmentsFeatureBootstrap>
+      )
     }
   ],
   navigationItems: [

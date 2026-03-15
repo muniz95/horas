@@ -1,17 +1,19 @@
-import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { addAppointment } from '@/features/appointments/model/actions';
+import { Alert, Button, Card, Group, Loader, Stack, Text, Title } from '@mantine/core';
 import AppointmentCard from '@/features/appointments/ui/appointment-card';
-import type { RootState } from '@/app/store/root-reducer';
-import type { AppDispatch } from '@/app/store/store';
+import { useAppointmentsPageViewModel } from '@/features/appointments/application/view-model/use-appointments-page-view-model';
 
 export default function AppointmentsPage() {
-  const appointments = useSelector((state: RootState) => state.appointments);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const onAddAppointment = () => {
-    dispatch(addAppointment());
-  };
+  const {
+    addAppointment,
+    changeField,
+    clearAppointments,
+    deleteAppointment,
+    error,
+    items,
+    retryLoad,
+    saveAppointment,
+    status
+  } = useAppointmentsPageViewModel();
 
   return (
     <Stack gap="md">
@@ -22,14 +24,48 @@ export default function AppointmentsPage() {
             Manage your scheduling entries in one place.
           </Text>
         </div>
-        <Button onClick={onAddAppointment}>New appointment</Button>
+        <Group>
+          <Button onClick={() => void clearAppointments()} variant="default">
+            Clear all
+          </Button>
+          <Button onClick={addAppointment}>New appointment</Button>
+        </Group>
       </Group>
 
-      {appointments.length > 0 ? (
-        appointments.map((appointment, index) => (
+      {error ? (
+        <Alert
+          color="red"
+          title="Appointments could not be updated"
+          variant="light"
+        >
+          <Group justify="space-between" align="center">
+            <Text size="sm">{error}</Text>
+            <Button onClick={() => void retryLoad()} size="xs" variant="light">
+              Retry
+            </Button>
+          </Group>
+        </Alert>
+      ) : null}
+
+      {status === 'loading' ? (
+        <Card withBorder p="lg">
+          <Group>
+            <Loader size="sm" />
+            <Text c="dimmed">Loading appointments...</Text>
+          </Group>
+        </Card>
+      ) : items.length > 0 ? (
+        items.map((item) => (
           <AppointmentCard
-            key={`${appointment.startDate}-${appointment.startTime}-${index}`}
-            appointment={appointment}
+            key={item.id}
+            appointment={item.appointment}
+            isDirty={item.isDirty}
+            isPersisted={item.isPersisted}
+            isSaving={item.isSaving}
+            onChange={(field, value) => changeField(item.id, field, value)}
+            onDelete={() => void deleteAppointment(item.id)}
+            onSave={() => void saveAppointment(item.id)}
+            validationErrors={item.validationErrors}
           />
         ))
       ) : (
